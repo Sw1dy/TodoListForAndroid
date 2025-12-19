@@ -3,45 +3,40 @@ package com.example.todolistforandroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.todolistforandroid.ui.theme.TodoListForAndroidTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.todolistforandroid.data.repository.TodoRepositoryImpl
+import com.example.todolistforandroid.domain.usecase.GetTodosUseCase
+import com.example.todolistforandroid.domain.usecase.ToggleTodoUseCase
+import com.example.todolistforandroid.navigation.SetupNavigation
+import com.example.todolistforandroid.navigation.rememberTodoNavController
+import com.example.todolistforandroid.presentation.viewmodel.TodoViewModel
+import com.example.todolistforandroid.ui.theme.ToDoListTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            TodoListForAndroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val repository = TodoRepositoryImpl(this)
+            val viewModel: TodoViewModel = viewModel {
+                TodoViewModel(
+                    GetTodosUseCase(repository),
+                    ToggleTodoUseCase(repository)
+                )
+            }
+            val navController = rememberTodoNavController()
+
+            ToDoListTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    SetupNavigation(navController, viewModel)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TodoListForAndroidTheme {
-        Greeting("Android")
     }
 }
