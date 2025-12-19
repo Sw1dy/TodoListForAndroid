@@ -92,4 +92,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.0")
+    implementation("androidx.compose.material3:material3-window-size-class:1.2.0")
 }
