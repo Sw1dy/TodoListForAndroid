@@ -1,9 +1,9 @@
 package com.example.todolistforandroid.data.repository
 
 
-import com.example.todolist.data.local.TodoJsonDataSource
-import com.example.todolist.domain.model.TodoItem
-import com.example.todolist.domain.repository.TodoRepository
+import com.example.todolistforandroid.data.local.TodoJsonDataSource
+import com.example.todolistforandroid.domain.model.TodoItem
+import com.example.todolistforandroid.domain.repository.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

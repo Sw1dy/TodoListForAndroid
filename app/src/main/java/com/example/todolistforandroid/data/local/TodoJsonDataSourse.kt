@@ -2,7 +2,7 @@ package com.example.todolistforandroid.data.local
 
 
 import android.content.Context
-import com.example.todolist.data.model.TodoItemDto
+import com.example.todolistforandroid.data.model.TodoItemDto
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
