@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">TodoListForAndroid</string>
+    <string name="app_name">TodoList</string>
+    <string name="back_button_content_description">Назад</string>
+    <string name="checkbox_content_description">Чекбокс задачи</string>
 </resources>
